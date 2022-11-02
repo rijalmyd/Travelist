@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Travelist</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_favorite">Favorite</string>
+</resources>
