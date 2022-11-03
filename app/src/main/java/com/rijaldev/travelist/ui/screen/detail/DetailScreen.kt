@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -93,6 +94,7 @@ fun DetailContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(296.dp)
+                    .testTag("scroll")
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
@@ -151,6 +153,7 @@ fun DetailContent(
                 .align(Alignment.TopStart)
                 .clip(CircleShape)
                 .size(40.dp)
+                .testTag("back_button")
                 .background(Color.White)
         ) {
             Icon(
@@ -168,6 +171,7 @@ fun DetailContent(
                 .clip(CircleShape)
                 .size(40.dp)
                 .background(Color.White)
+                .testTag("add_remove_favorite")
         ) {
             Icon(
                 imageVector = if (!isFavorite) Icons.Default.FavoriteBorder else Icons.Default.Favorite,

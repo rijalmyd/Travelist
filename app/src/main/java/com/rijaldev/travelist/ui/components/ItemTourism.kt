@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -82,6 +83,7 @@ fun ItemTourism(
                .padding(16.dp)
                .align(Alignment.TopEnd)
                .size(24.dp)
+               .testTag("fav_button")
                .clickable { onFavoriteIconClicked(id, !isFavorite) }
        )
    }
