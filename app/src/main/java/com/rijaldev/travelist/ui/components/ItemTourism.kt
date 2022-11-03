@@ -4,15 +4,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -23,16 +24,18 @@ import com.rijaldev.travelist.ui.theme.TravelistTheme
 
 @Composable
 fun ItemTourism(
+    id: Int,
     photoUrl: String,
     title: String,
     location: String,
     rating: Double,
+    isFavorite: Boolean,
+    onFavoriteIconClicked: (id: Int, newState: Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
    Box(
        modifier = modifier
            .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
-           .clickable {  }
    ) {
        Column {
            AsyncImage(
@@ -41,7 +44,7 @@ fun ItemTourism(
                contentScale = ContentScale.Crop,
                modifier = Modifier
                    .fillMaxWidth()
-                   .aspectRatio(1f)
+                   .height(256.dp)
                    .clip(RoundedCornerShape(16.dp))
            )
            Spacer(modifier = Modifier.height(8.dp))
@@ -72,12 +75,14 @@ fun ItemTourism(
            )
        }
        Icon(
-           imageVector = Icons.Outlined.FavoriteBorder,
+           imageVector = if (isFavorite) Icons.Rounded.Favorite else Icons.Outlined.FavoriteBorder,
            contentDescription = null,
+           tint = if (!isFavorite) Color.Black else Color.Red,
            modifier = Modifier
-               .align(Alignment.TopEnd)
                .padding(16.dp)
+               .align(Alignment.TopEnd)
                .size(24.dp)
+               .clickable { onFavoriteIconClicked(id, !isFavorite) }
        )
    }
 }
@@ -87,10 +92,13 @@ fun ItemTourism(
 fun ItemTourismPreview() {
     TravelistTheme {
         ItemTourism(
+            id = 0,
             photoUrl = "",
             title = "Telaga Menjer",
             location = "Wonosobo, Jawa Tengah",
-            rating = 8.9
+            rating = 8.9,
+            isFavorite = true,
+            onFavoriteIconClicked = { _, _ ->  }
         )
     }
 }

@@ -1,13 +1,16 @@
 package com.rijaldev.travelist.data
 
 import com.rijaldev.travelist.model.Tourism
+import kotlinx.coroutines.flow.Flow
 
 interface TourismRepository {
-    fun getTourismPlaces(): List<Tourism>
+    fun getTourismPlaces(): Flow<List<Tourism>>
 
-    fun getTourismPlaceById(id: Int): Tourism
+    fun getTourismPlaceById(id: Int): Flow<Tourism>
 
-    fun searchTourismPlaces(query: String): List<Tourism>
+    fun getFavoriteTourism(): Flow<List<Tourism>>
 
-    fun updateTourismPlace(id: Int, newState: Boolean)
+    fun searchTourismPlaces(query: String): Flow<List<Tourism>>
+
+    fun updateTourismPlace(id: Int, newState: Boolean): Flow<Boolean>
 }
